@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">IKON Church</string>
+    <string name="SermonPrompt">Sermon</string>
+    <string name="PreacherPrompt">Preacher</string>
+
+    <string-array name="Sermon">
+        <item>None</item>
+        <item>IKON</item>
+    </string-array>
+
+    <string-array name="Preacher">
+        <item>Paul Benger</item>
+    </string-array>
 </resources>

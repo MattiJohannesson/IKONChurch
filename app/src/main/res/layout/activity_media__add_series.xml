@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/darker_gray"
+    android:orientation="vertical"
+    tools:context="com.churchapp.ikon.ikonchurch.Media_AddSeries">
+
+
+    <ImageView
+        android:id="@+id/imageViewThumbnail"
+        android:layout_width="350dp"
+        android:layout_height="250dp"
+        android:src="@mipmap/ic_launcher"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="93dp"
+        android:layout_marginStart="93dp"
+        android:onClick="AddImage"
+        android:text="Upload Image"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Sermon Name"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="93dp"
+        android:layout_marginStart="93dp"
+        android:text="Submit"
+        tools:ignore="HardcodedText" />
+</LinearLayout>
