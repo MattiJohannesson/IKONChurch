@@ -3,9 +3,13 @@ package com.churchapp.ikon.ikonchurch;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
+import android.media.audiofx.AudioEffect;
 import android.net.Uri;
+import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.EventLogTags;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -13,18 +17,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import com.churchapp.ikon.ikonchurch.HexConverter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Media_AddSeries extends Activity {
-
+    private HexConverter Hex;
     private static final int PICK_IMAGE = 1;
     public ImageView Thumbnail;
-    public EditText Title;
-    public List<Sermon> Sermons = new ArrayList<Sermon>();
-    ArrayAdapter<Sermon> adapter;
-    ListView SermonListView;
+    public EditText Title, Description;
+    private String ID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +36,7 @@ public class Media_AddSeries extends Activity {
 
         Thumbnail = (ImageView) findViewById(R.id.imageViewThumbnail);
         Title = (EditText) findViewById(R.id.editTextSermonTitle);
-        SermonListView = (ListView) findViewById(R.id.ListViewSermon);
+//        Description = (EditText) findViewById(R.id.editTextSermonDescription);
     }
 
     public void AddImage(View view) {
@@ -56,40 +59,14 @@ public class Media_AddSeries extends Activity {
         Thumbnail.setImageURI(originalUri);
     }
 
-    public void Submit(View view) {
-        AddSermon(Thumbnail, Title.toString());
-        PopulateList();
-        Intent i = new Intent(Media_AddSeries.this, MediaTab.class);
-        startActivity(i);
+    public void AddSermon(){
+        HexConverter Hex = new HexConverter();
+        ID = Hex.FromDECtoHEX(ArrayController.Sermons.size() + 1);
+        new Sermon(ID,Thumbnail,Title.toString(),Description.toString());
     }
 
-    public void AddSermon(ImageView _thumbnail, String _title) {
-        Sermons.add(new Sermon(_thumbnail, _title));
+    public void submit(View view){
+        AddSermon();
     }
-
-    public void PopulateList(){
-        adapter = new SermonListAdapter();
-        SermonListView.setAdapter(adapter);
-    }
-
-    private class SermonListAdapter extends ArrayAdapter<Sermon>{
-        public SermonListAdapter(){
-            super (Media_AddSeries.this,R.layout.mediasermonitem, Sermons);
-        }
-
-        @Override
-        public View getView(int position, View view, ViewGroup parent){
-            if (view == null){
-                view = getLayoutInflater().inflate(R.layout.mediasermonitem, parent,false);
-
-                Sermon currentSermon = Sermons.get(position);
-
-                ImageView thumbnail = (ImageView) findViewById(R.id.imageViewThumbnail);
-                TextView title = (TextView) findViewById(R.id.textViewTitle);
-            }
-            return view;
-        }
-    }
-
 }
 

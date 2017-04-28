@@ -42,7 +42,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="93dp"
         android:layout_marginStart="93dp"
-        android:text="Submit"
-        android:onClick="Submit"
-        tools:ignore="HardcodedText" />
+        android:onClick="submit"
+        android:text="Submit" />
 </LinearLayout>
