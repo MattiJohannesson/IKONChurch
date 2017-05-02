@@ -26,7 +26,10 @@ public class Media_AddSeries extends Activity {
     private HexConverter Hex;
     private static final int PICK_IMAGE = 1;
     public ImageView Thumbnail;
+    public Uri ThumbnailURI;
     public EditText Title, Description;
+    public List<Videos> Vids;
+    public List<Sermon> Sermons = new ArrayList<>();
     private String ID;
 
     @Override
@@ -36,7 +39,7 @@ public class Media_AddSeries extends Activity {
 
         Thumbnail = (ImageView) findViewById(R.id.imageViewThumbnail);
         Title = (EditText) findViewById(R.id.editTextSermonTitle);
-//        Description = (EditText) findViewById(R.id.editTextSermonDescription);
+        Description = (EditText) findViewById(R.id.editTextSermonDescription);
     }
 
     public void AddImage(View view) {
@@ -56,13 +59,14 @@ public class Media_AddSeries extends Activity {
             originalUri = data.getData();
         }
 
+        ThumbnailURI = originalUri;
         Thumbnail.setImageURI(originalUri);
     }
 
     public void AddSermon(){
         HexConverter Hex = new HexConverter();
         ID = Hex.FromDECtoHEX(ArrayController.Sermons.size() + 1);
-        new Sermon(ID,Thumbnail,Title.toString(),Description.toString());
+        new Sermon(ID,ThumbnailURI,Title.toString(),Description.toString(),Vids);
     }
 
     public void submit(View view){
