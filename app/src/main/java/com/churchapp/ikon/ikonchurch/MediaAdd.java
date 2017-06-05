@@ -16,24 +16,36 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Gallery;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobile.AWSConfiguration;
+import com.amazonaws.models.nosql.VideosDO;
+import com.amazonaws.regions.Region;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.churchapp.ikon.ikonchurch.VideoServerAdd;
 import java.io.File;
 
 public class MediaAdd extends Activity {
 
+    int PICK_VIDEO = 1;
+    int PICK_IMAGE = 1;
     VideoView Preach;
     private int Position = 0;
     private MediaController mediaController;
+    private ImageView VidThumb;
     EditText VideoURL;
+    private String _description, _title, _tags, _Videolink, _thumbLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_add);
         Preach = (VideoView) findViewById(R.id.videoViewPreach);
+        VidThumb = (ImageView) findViewById(R.id.imageViewVidThumbnail);
 
         // Set the media controller buttons
         if (mediaController == null) {
@@ -45,17 +57,6 @@ public class MediaAdd extends Activity {
 
             // Set MediaController for VideoView
             Preach.setMediaController(mediaController);
-        }
-
-
-        try {
-            // ID of video file.
-            int id = this.getRawResIdByName("Respawn Inbox! - Happy Memory Day feat. Deanna Russo.mp4");
-            Preach.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" + id));
-
-        } catch (Exception e) {
-            Log.e("Error", e.getMessage());
-            e.printStackTrace();
         }
 
         Preach.requestFocus();
@@ -86,15 +87,48 @@ public class MediaAdd extends Activity {
 
     }
 
-    // Find ID corresponding to the name of the resource (in the directory raw).
-    public int getRawResIdByName(String resName) {
-        String pkgName = this.getPackageName();
-        // Return 0 if not found.
-        int resID = this.getResources().getIdentifier(resName, "raw", pkgName);
-        Log.i("AndroidVideoView", "Res Name: " + resName + "==> Res ID = " + resID);
-        return resID;
+    public void AddVideo(View view) {
+        Intent intent = new Intent();
+        intent.setType("Video/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent.createChooser(intent, "Select Thumbnail"), PICK_VIDEO);
     }
 
+    public void AddThumbnail(View view){
+        Intent intent = new Intent();
+        intent.setType("Image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent.createChooser(intent, "Select Thumbnail"), PICK_IMAGE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != Activity.RESULT_OK) return;
+        if (null == data) return;
+        Uri originalUri = null;
+        if (requestCode == PICK_VIDEO) {
+            originalUri = data.getData();
+            Preach.setVideoURI(originalUri);
+        }
+        if (requestCode == PICK_IMAGE){
+            originalUri = data.getData();
+            VidThumb.setImageURI(originalUri);
+        }
+    }
+
+    public void Submit(String title, String Description, String tags, String videoLink, String thumbLink, CognitoCachingCredentialsProvider provider){
+        AmazonDynamoDBClient ddbClient = new AmazonDynamoDBClient(provider.getCredentials());
+        ddbClient.setRegion(Region.getRegion(AWSConfiguration.AMAZON_DYNAMODB_REGION));
+
+        VideosDO viddb = new VideosDO();
+        viddb.setUserId(provider.getCachedIdentityId());
+        viddb.setDescription(_description);
+        viddb.setTags(_tags);
+        viddb.setTitle(_title);
+        viddb.setVideoLink(_Videolink);
+        viddb.setThumbnailLink(_thumbLink);
+    }
 
     // When you change direction of phone, this method will be called.
     // It store the state of video (Current position)
