@@ -33,7 +33,6 @@ public class MediaTab extends Activity {
     ArrayAdapter<Sermon> SermonAdapter;
     ListView SermonListView;
     Media_AddSeries SeriesAdd;
-    DatabaseHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +50,6 @@ public class MediaTab extends Activity {
         } else {
             isVisable = true;
         }
-
-        if (dbHandler)
-
         Populatelist();
     }
 

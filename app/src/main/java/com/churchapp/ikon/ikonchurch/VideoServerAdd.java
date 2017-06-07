@@ -1,8 +1,8 @@
 package com.churchapp.ikon.ikonchurch;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
-import com.amazonaws.mobile.AWSConfiguration;
-import com.amazonaws.models.nosql.VideosDO;
+import com.churchapp.ikon.ikonchurch.amazonaws.mobile.AWSConfiguration;
+import com.churchapp.ikon.ikonchurch.amazonaws.models.nosql.VideosDO;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 

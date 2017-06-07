@@ -1,33 +1,21 @@
 package com.churchapp.ikon.ikonchurch;
 
 import android.app.Activity;
-import android.app.DownloadManager;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.provider.MediaStore;
-import android.provider.SyncStateContract.Constants;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.MediaController;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
-import com.amazonaws.mobile.AWSConfiguration;
-import com.amazonaws.models.nosql.VideosDO;
+import com.churchapp.ikon.ikonchurch.amazonaws.mobile.AWSConfiguration;
+import com.churchapp.ikon.ikonchurch.amazonaws.models.nosql.VideosDO;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
-import com.churchapp.ikon.ikonchurch.VideoServerAdd;
-import java.io.File;
 
 public class MediaAdd extends Activity {
 
@@ -53,7 +41,6 @@ public class MediaAdd extends Activity {
 
             // Set the videoView that acts as the anchor for the MediaController.
             mediaController.setAnchorView(Preach);
-
 
             // Set MediaController for VideoView
             Preach.setMediaController(mediaController);
@@ -87,11 +74,8 @@ public class MediaAdd extends Activity {
 
     }
 
-    public void AddVideo(View view) {
-        Intent intent = new Intent();
-        intent.setType("Video/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent.createChooser(intent, "Select Thumbnail"), PICK_VIDEO);
+    public void ShowVid(View view){
+        Preach.setVideoPath(VideoURL.getText().toString());
     }
 
     public void AddThumbnail(View view){
@@ -107,10 +91,7 @@ public class MediaAdd extends Activity {
         if (resultCode != Activity.RESULT_OK) return;
         if (null == data) return;
         Uri originalUri = null;
-        if (requestCode == PICK_VIDEO) {
-            originalUri = data.getData();
-            Preach.setVideoURI(originalUri);
-        }
+
         if (requestCode == PICK_IMAGE){
             originalUri = data.getData();
             VidThumb.setImageURI(originalUri);
