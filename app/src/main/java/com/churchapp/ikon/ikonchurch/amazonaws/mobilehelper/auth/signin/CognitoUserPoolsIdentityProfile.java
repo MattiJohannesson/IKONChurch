@@ -48,14 +48,14 @@ public class CognitoUserPoolsIdentityProfile extends AbstractIdentityProfile {
             throw new ProfileRetrievalException(
                 "Can't load user info, due to no longer signed in with " + provider.getDisplayName());
         }
-        final CognitoUserPoolsSignInProvider cognitoUserPoolsSignInProvider =
-            (CognitoUserPoolsSignInProvider) provider;
-        final CognitoUserPool cognitoUserPool =
-            cognitoUserPoolsSignInProvider.getCognitoUserPool();
+//        final CognitoUserPoolsSignInProvider cognitoUserPoolsSignInProvider =
+//            (CognitoUserPoolsSignInProvider) provider;
+//        final CognitoUserPool cognitoUserPool =
+//            cognitoUserPoolsSignInProvider.getCognitoUserPool();
 
-        if (null != cognitoUserPool && null != cognitoUserPool.getCurrentUser()) {
-            userName = cognitoUserPool.getCurrentUser().getUserId();
-        }
+//        if (null != cognitoUserPool && null != cognitoUserPool.getCurrentUser()) {
+//            userName = cognitoUserPool.getCurrentUser().getUserId();
+//        }
         return this;
     }
 }

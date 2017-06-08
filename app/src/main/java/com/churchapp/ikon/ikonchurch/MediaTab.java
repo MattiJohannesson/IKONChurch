@@ -38,7 +38,7 @@ public class MediaTab extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_media_tab );
-        Populatelist();
+//        Populatelist();
 
         SeriesAdd = new Media_AddSeries();
         SermonListView = (ListView) findViewById( R.id.ListViewSermon );
@@ -50,7 +50,7 @@ public class MediaTab extends Activity {
         } else {
             isVisable = true;
         }
-        Populatelist();
+//        Populatelist();
     }
 
     public void OptionBar(View view) {
@@ -81,27 +81,27 @@ public class MediaTab extends Activity {
         }
     }
 
-    private void Populatelist() {
-        SermonAdapter = new SermonListAdapter();
-        SermonListView.setAdapter( SermonAdapter );
-    }
+//    private void Populatelist() {
+//        SermonAdapter = new SermonListAdapter();
+//        SermonListView.setAdapter( SermonAdapter );
+//    }
 
-    private class SermonListAdapter extends ArrayAdapter<Sermon> {
-
-        public SermonListAdapter() {
-            super( MediaTab.this, R.layout.mediasermonitem, SeriesAdd.Sermons);
-        }
-
-        @Override
-        public View getView(int Pos, View view, ViewGroup parent) {
-            if (view == null)
-                view = getLayoutInflater().inflate( R.layout.mediasermonitem, parent, false );
-
-            Sermon currentSermon = SeriesAdd.Sermons.get( Pos );
-
-            ImageView Thumbnail = (ImageView) view.findViewById( R.id.imageViewThumbnail );
-            Thumbnail.setImageURI(currentSermon.getThumbnail());
-            return view;
-        }
-    }
+//    private class SermonListAdapter extends ArrayAdapter<Sermon> {
+//
+//        public SermonListAdapter() {
+////            super( MediaTab.this, R.layout.mediasermonitem, SeriesAdd.Sermons);
+//        }
+//
+//        @Override
+//        public View getView(int Pos, View view, ViewGroup parent) {
+//            if (view == null)
+//                view = getLayoutInflater().inflate( R.layout.mediasermonitem, parent, false );
+//
+//            Sermon currentSermon = SeriesAdd.Sermons.get( Pos );
+//
+//            ImageView Thumbnail = (ImageView) view.findViewById( R.id.imageViewThumbnail );
+//            Thumbnail.setImageURI(currentSermon.getThumbnail());
+//            return view;
+//        }
+//    }
 }

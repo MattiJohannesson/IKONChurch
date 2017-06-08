@@ -33,7 +33,7 @@ public class MediaAdd extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView();
+        setContentView(R.layout.activity_media_add);
         Preach = (VideoView) findViewById(R.id.videoViewPreach);
         VidThumb = (ImageView) findViewById(R.id.imageViewVidThumbnail);
 

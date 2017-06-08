@@ -21,7 +21,6 @@ import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.churchapp.ikon.ikonchurch.amazonaws.mobilehelper.auth.signin.AuthException;
 import com.churchapp.ikon.ikonchurch.amazonaws.mobilehelper.auth.signin.CognitoAuthException;
 import com.churchapp.ikon.ikonchurch.amazonaws.mobilehelper.auth.signin.ProviderAuthException;
-import com.churchapp.ikon.ikonchurch.amazonaws.mobilehelper.auth.signin.ui.SignInActivity;
 import com.churchapp.ikon.ikonchurch.amazonaws.mobilehelper.auth.signin.SignInManager;
 import com.churchapp.ikon.ikonchurch.amazonaws.mobilehelper.auth.signin.SignInProvider;
 import com.churchapp.ikon.ikonchurch.amazonaws.mobilehelper.auth.signin.SignInProviderResultHandler;
@@ -738,6 +737,6 @@ public class IdentityManager {
         final SignInManager signInManager = SignInManager.getInstance(
             context.getApplicationContext(), this);
         signInManager.setResultHandler(signInResultHandler);
-        context.startActivity(new Intent(context, SignInActivity.class));
+//        context.startActivity(new Intent(context, SignInActivity.class));
     }
 }
