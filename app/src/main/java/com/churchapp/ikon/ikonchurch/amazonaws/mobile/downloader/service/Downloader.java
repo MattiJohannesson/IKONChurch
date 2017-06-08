@@ -1,8 +1,5 @@
 package com.churchapp.ikon.ikonchurch.amazonaws.mobile.downloader.service;
 
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * A downloader that handles the actual downloading of files.
  */

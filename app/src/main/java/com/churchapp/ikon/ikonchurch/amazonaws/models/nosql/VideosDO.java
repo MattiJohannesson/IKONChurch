@@ -1,12 +1,5 @@
 package com.churchapp.ikon.ikonchurch.amazonaws.models.nosql;
 
-import com.amazonaws.auth.policy.actions.DynamoDBv2Actions;
-
-
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 
 public class VideosDO {
     private String _userId;

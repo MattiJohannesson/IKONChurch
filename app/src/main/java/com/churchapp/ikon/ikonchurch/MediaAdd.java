@@ -17,6 +17,8 @@ import com.churchapp.ikon.ikonchurch.amazonaws.models.nosql.VideosDO;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 
+
+
 public class MediaAdd extends Activity {
 
     int PICK_VIDEO = 1;
@@ -31,7 +33,7 @@ public class MediaAdd extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_media_add);
+        setContentView();
         Preach = (VideoView) findViewById(R.id.videoViewPreach);
         VidThumb = (ImageView) findViewById(R.id.imageViewVidThumbnail);
 

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="sign_in_separator_color">#DDDDDD</color>
+    <item name="user_pool_sign_in_view_id" type="id"/>
 </resources>
