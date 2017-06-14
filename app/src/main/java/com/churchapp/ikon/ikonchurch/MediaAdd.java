@@ -1,10 +1,12 @@
 package com.churchapp.ikon.ikonchurch;
 
 import android.app.Activity;
+import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,18 +14,20 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.regions.Regions;
 import com.churchapp.ikon.ikonchurch.amazonaws.mobile.AWSConfiguration;
 import com.churchapp.ikon.ikonchurch.amazonaws.models.nosql.VideosDO;
 import com.amazonaws.regions.Region;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 
+import java.net.URI;
 
 
 public class MediaAdd extends Activity {
 
+    CognitoCachingCredentialsProvider provider = new CognitoCachingCredentialsProvider( getApplicationContext(), "us-east-1:e717b72c-1df0-4190-a789-e0ce9881320e", Regions.US_EAST_1  );
     int PICK_VIDEO = 1;
     int PICK_IMAGE = 1;
-    VideoView Preach;
     private int Position = 0;
     private MediaController mediaController;
     private ImageView VidThumb;
@@ -34,50 +38,13 @@ public class MediaAdd extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_add);
-        Preach = (VideoView) findViewById(R.id.videoViewPreach);
         VidThumb = (ImageView) findViewById(R.id.imageViewVidThumbnail);
-
-        // Set the media controller buttons
-        if (mediaController == null) {
-            mediaController = new MediaController(MediaAdd.this);
-
-            // Set the videoView that acts as the anchor for the MediaController.
-            mediaController.setAnchorView(Preach);
-
-            // Set MediaController for VideoView
-            Preach.setMediaController(mediaController);
-        }
-
-        Preach.requestFocus();
-
-
-        // When the video file ready for playback.
-        Preach.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-
-            public void onPrepared(MediaPlayer mediaPlayer) {
-
-
-                Preach.seekTo(Position);
-                if (Position == 0) {
-                    Preach.start();
-                }
-
-                // When video Screen change size.
-                mediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
-                    @Override
-                    public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
-
-                        // Re-Set the videoView that acts as the anchor for the MediaController
-                        mediaController.setAnchorView(Preach);
-                    }
-                });
-            }
-        });
+        VideoURL = (EditText) findViewById( R.id.editTextVideoUrl);
 
     }
 
     public void ShowVid(View view){
-        Preach.setVideoPath(VideoURL.getText().toString());
+
     }
 
     public void AddThumbnail(View view){
@@ -100,7 +67,7 @@ public class MediaAdd extends Activity {
         }
     }
 
-    public void Submit(String title, String Description, String tags, String videoLink, String thumbLink, CognitoCachingCredentialsProvider provider){
+    public void Submit(){
         AmazonDynamoDBClient ddbClient = new AmazonDynamoDBClient(provider.getCredentials());
         ddbClient.setRegion(Region.getRegion(AWSConfiguration.AMAZON_DYNAMODB_REGION));
 
@@ -113,25 +80,4 @@ public class MediaAdd extends Activity {
         viddb.setThumbnailLink(_thumbLink);
     }
 
-    // When you change direction of phone, this method will be called.
-    // It store the state of video (Current position)
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
-
-        // Store current position.
-        savedInstanceState.putInt("CurrentPosition", Preach.getCurrentPosition());
-        Preach.pause();
-    }
-
-
-    // After rotating the phone. This method is called.
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        // Get saved position.
-        Position = savedInstanceState.getInt("CurrentPosition");
-        Preach.seekTo(Position);
-    }
 }

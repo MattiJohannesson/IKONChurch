@@ -1,6 +1,8 @@
 package com.churchapp.ikon.ikonchurch.amazonaws.models.nosql;
 
+import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBTable;
 
+@DynamoDBTable( tableName = "Videos")
 public class VideosDO {
     private String _userId;
     private String _description;
@@ -16,37 +18,36 @@ public class VideosDO {
     public void setUserId(final String _userId) {
         this._userId = _userId;
     }
+
     public String getDescription() {
         return _description;
     }
-
     public void setDescription(final String _description) {
         this._description = _description;
     }
+
     public String getTags() {
         return _tags;
     }
-
     public void setTags(final String _tags) {
         this._tags = _tags;
     }
+
     public String getTitle() {
         return _title;
     }
-
     public void setTitle(final String _title) {
         this._title = _title;
     }
+
     public String getVideoLink() {
         return _videoLink;
     }
-
     public void setVideoLink(final String _videoLink) {
         this._videoLink = _videoLink;
     }
 
-    public void setThumbnailLink(final String _thumbnailLink){
-        this._thumbnailLink = _thumbnailLink;
-    }
+    public String getthumbnailLink(final String _thumbnailLink) {return _thumbnailLink;}
+    public void setThumbnailLink(final String _thumbnailLink){this._thumbnailLink = _thumbnailLink;}
 
 }

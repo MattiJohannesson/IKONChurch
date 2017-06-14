@@ -18,16 +18,36 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.amazonaws.auth.CognitoCachingCredentialsProvider;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3Client;
 import com.churchapp.ikon.ikonchurch.HexConverter;
+import com.churchapp.ikon.ikonchurch.amazonaws.mobile.AWSConfiguration;
+import com.churchapp.ikon.ikonchurch.amazonaws.models.nosql.SermonDB;
+
+import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Media_AddSeries extends Activity {
+
+    CognitoCachingCredentialsProvider provider =  new CognitoCachingCredentialsProvider( getApplicationContext(), "us-east-1:e717b72c-1df0-4190-a789-e0ce9881320e", Regions.US_EAST_1 );
+    AmazonS3 S3 = new AmazonS3Client( provider );
+    TransferUtility transferUtility = new TransferUtility( S3, getApplicationContext() );
     private HexConverter Hex;
     private static final int PICK_IMAGE = 1;
     public ImageView Thumbnail;
     public EditText Title, Description;
     private String ID;
+    public Uri ThumbUri;
+    ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +56,8 @@ public class Media_AddSeries extends Activity {
 
         Thumbnail = (ImageView) findViewById(R.id.imageViewThumbnail);
         Title = (EditText) findViewById(R.id.editTextSermonTitle);
-//        Description = (EditText) findViewById(R.id.editTextSermonDescription);
+        
+//      Description = (EditText) findViewById(R.id.editTextSermonDescription);
     }
 
     public void AddImage(View view) {
@@ -60,9 +81,16 @@ public class Media_AddSeries extends Activity {
     }
 
     public void AddSermon(){
-        HexConverter Hex = new HexConverter();
-        ID = Hex.FromDECtoHEX(ArrayController.Sermons.size() + 1);
-        new Sermon(ID,Thumbnail,Title.toString(),Description.toString());
+        AmazonDynamoDBClient ddbClient = new AmazonDynamoDBClient(provider.getCredentials() );
+        ddbClient.setRegion( Region.getRegion( AWSConfiguration.AMAZON_DYNAMODB_REGION ) );
+
+        SermonDB sdb = new SermonDB();
+        sdb.setTitle( Title.toString() );
+        sdb.setDescription( Description.toString() );
+        sdb.setHex( Hex.FromDECtoHEX( sdb.gettotalItems()+ 1 ) );
+        sdb.setThumbId( Hex.FromDECtoHEX( sdb.gettotalItems() + 1 ) );
+
+        TransferObserver observer = transferUtility.upload("ikonapp-data",sdb.getThumbId(), );
     }
 
     public void submit(View view){
