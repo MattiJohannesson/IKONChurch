@@ -7,43 +7,40 @@
     tools:context="com.churchapp.ikon.ikonchurch.Home">
 
     <LinearLayout
-        android:id="@+id/LayoutBarBttom"
-        android:layout_width="385dp"
+        android:id="@+id/LayoutBarBottom"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="8dp"
         android:background="@android:color/background_light"
         android:orientation="horizontal"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinearLayoutOptionsBar"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintVertical_bias="1.0">
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/ImageButtonHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription=""
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            android:src="@mipmap/ic_launcher_round"/>
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/ImageButtonConnect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            android:src="@mipmap/ic_launcher_round"/>
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/ImageButtonGiving"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            android:src="@mipmap/ic_launcher_round"/>
 
         <ImageButton
             android:id="@+id/ImageBttnMedia"
@@ -51,13 +48,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="ChangeActivity"
-            app:srcCompat="@android:drawable/ic_menu_slideshow" />
+            android:src="@android:drawable/ic_menu_slideshow"/>
 
         <ImageButton
-            android:id="@+id/imageButton5"
+            android:id="@+id/ImageButtonProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            android:onClick="ChangeActivity"
+            android:src="@mipmap/ic_launcher_round"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

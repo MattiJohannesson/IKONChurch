@@ -15,12 +15,17 @@ public class Home extends Activity {
     }
 
     public void ChangeActivity(View view){
-        if (view.getId() == R.id.ImageBttnMedia){
-            Intent i = new Intent(Home.this, MediaTab.class);
-            startActivity(i);
-        }
-        else {
-            return;
+        Intent i = null;
+        switch (view.getId()){
+            case R.id.ImageBttnMedia:
+                i = new Intent(Home.this, MediaTab.class);
+                startActivity(i);
+                break;
+
+            case R.id.ImageButtonProfile:
+                i = new Intent( Home.this, ProfileTab.class );
+                startActivity( i );
+                break;
         }
     }
 }

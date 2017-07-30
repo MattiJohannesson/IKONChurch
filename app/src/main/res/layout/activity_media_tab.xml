@@ -6,6 +6,32 @@
     android:layout_height="match_parent"
     tools:context="com.churchapp.ikon.ikonchurch.MediaTab">
 
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/ListViewSermon"
+                android:layout_width="match_parent"
+                android:layout_height="720dp"
+                >
+
+
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
+
     <LinearLayout
         android:id="@+id/LinearLayoutOptionsBar"
         android:layout_width="200dp"
@@ -78,28 +104,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            android:src="@mipmap/ic_launcher_round" />
 
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            android:src="@mipmap/ic_launcher_round" />
 
         <ImageButton
             android:id="@+id/ImageBttnMedia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_menu_slideshow" />
+            android:src="@android:drawable/ic_menu_slideshow" />
 
         <ImageButton
             android:id="@+id/imageButton5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            android:src="@mipmap/ic_launcher_round" />
     </LinearLayout>
 
     <LinearLayout
@@ -122,7 +148,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription=""
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            android:src="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/textView2"
@@ -142,36 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="OptionBar"
-            app:srcCompat="@mipmap/ic_launcher_round" />
+            android:src="@mipmap/ic_launcher_round" />
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="387dp"
-        android:layout_height="470dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.496">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ListView
-                android:id="@+id/ListViewSermon"
-                android:layout_width="match_parent"
-                android:layout_height="720dp"
-                >
-
-
-            </ListView>
-        </LinearLayout>
-    </ScrollView>
 </android.support.constraint.ConstraintLayout>
