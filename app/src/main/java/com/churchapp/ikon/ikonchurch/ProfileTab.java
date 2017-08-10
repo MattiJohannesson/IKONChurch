@@ -21,7 +21,7 @@ import java.util.concurrent.TimeoutException;
 
 public class ProfileTab extends Activity {
 
-    int NextBttn =1;
+    int NextBttn =0;
     ImageView ImChanger;
     List<RadioButton> bttns= new ArrayList<RadioButton>(  );
     RadioButton Bttn1,Bttn2,Bttn3,Bttn4,Bttn5;
@@ -32,6 +32,8 @@ public class ProfileTab extends Activity {
         setContentView( R.layout.activity_profile_tab );
 
         SetVariables();
+        ImageController();
+
         if (true){
             try {
                 java.util.concurrent.TimeUnit.SECONDS.sleep(5);
@@ -43,10 +45,31 @@ public class ProfileTab extends Activity {
     }
 
 
+
+    public void ImageController(){
+        if (true){
+
+       if (NextBttn !=5) {
+            NextBttn++;
+        }
+        else {
+           NextBttn = 1;
+       }
+
+       LoadNext(NextBttn);
+            try {
+                java.util.concurrent.TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void LoadNext(int i) {
-        Bitmap bm=null;
+        Bitmap bm;
         BttnsOff( i );
-            switch (i) {
+
+        switch (i) {
                 case 1:
                     bm = BitmapFactory.decodeFile( "res/drawable/im1" );
                     ImChanger.setImageBitmap( bm );
