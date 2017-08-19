@@ -1,21 +1,16 @@
 package com.churchapp.ikon.ikonchurch;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.churchapp.ikon.ikonchurch.Profile_Login;
-
-public class Home extends Activity {
-
-
+public class Connect extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_connect );
     }
 
     public void Change(View view){
@@ -23,38 +18,38 @@ public class Home extends Activity {
         switch (view.getId()){
             case R.id.ImageButtonProfile:
                 if (Profile_Login.Logdedin){
-                    i = new Intent( Home.this, ProfileTab.class);
+                    i = new Intent( Connect.this, ProfileTab.class);
                     startActivity(i);
                 }
 
                 else {
-                    i= new Intent(Home.this, Profile_Login.class);
+                    i= new Intent(Connect.this, Profile_Login.class);
                     startActivity(i);
                 }
                 break;
 
             case R.id.imageButtnconnect:
-                i = new Intent( Home.this, Connect.class );
+                i = new Intent( Connect.this, Connect.class );
                 startActivity( i );
                 break;
 
             case R.id.imageButtnGiving:
-                i = new Intent( Home.this, Giving.class );
+                i = new Intent( Connect.this, Giving.class );
                 startActivity( i );
                 break;
 
             case R.id.imageButtnhome:
-                i = new Intent( Home.this, Home.class );
+                i = new Intent( Connect.this, Home.class );
                 startActivity( i );
                 break;
 
             case R.id.imageButtnProfile:
-                i = new Intent( Home.this, ProfileTab.class );
+                i = new Intent( Connect.this, ProfileTab.class );
                 startActivity( i );
                 break;
 
             case R.id.ImageBttnMedia:
-                i = new Intent(Home.this, MediaTab.class);
+                i = new Intent(Connect.this, MediaTab.class);
                 startActivity(i);
                 break;
         }

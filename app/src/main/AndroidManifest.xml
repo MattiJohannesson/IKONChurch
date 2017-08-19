@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.churchapp.ikon.ikonchurch">
+          package="com.churchapp.ikon.ikonchurch">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <service
         android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
-        android:enabled="true" />
+        android:enabled="true"/>
 
     <application
         android:allowBackup="true"
@@ -17,25 +17,29 @@
         android:theme="@android:style/Theme.NoTitleBar">
         <activity android:name=".Home">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MediaTab" />
-        <activity android:name=".MediaAdd" />
-        <activity android:name=".Media_AddSeries" />
-        <activity android:name=".ProfileTab" />
+        <activity android:name=".MediaTab"/>
+        <activity android:name=".MediaAdd"/>
+        <activity android:name=".Media_AddSeries"/>
+        <activity android:name=".ProfileTab"/>
+        <activity android:name=".Sign_up"/>
         <activity
             android:name=".Profile_Login"
             android:label="@string/title_activity_profile__login">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Sign_up"></activity>
+        <activity android:name=".Connect">
+        </activity>
+        <activity android:name=".Giving">
+        </activity>
     </application>
 
 </manifest>

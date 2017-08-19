@@ -9,6 +9,7 @@ import android.widget.EditText;
 public class Profile_Login extends Activity {
 
     String username, password;
+    public static boolean Logdedin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +40,15 @@ public class Profile_Login extends Activity {
                 startActivity( i );
                 break;
 
-            case R.id.imageButtnconnect:
-                i = new Intent( Profile_Login.this, Connect.class );
-                startActivity( i );
-                break;
-
-            case R.id.imageButtnGiving:
-                i = new Intent( Profile_Login.this, Giving.class );
-                startActivity( i );
-                break;
+//            case R.id.imageButtnconnect:
+//                i = new Intent( Profile_Login.this, Connect.class );
+//                startActivity( i );
+//                break;
+//
+//            case R.id.imageButtnGiving:
+//                i = new Intent( Profile_Login.this, Giving.class );
+//                startActivity( i );
+//                break;
 
             case R.id.imageButtnhome:
                 i = new Intent( Profile_Login.this, Home.class );

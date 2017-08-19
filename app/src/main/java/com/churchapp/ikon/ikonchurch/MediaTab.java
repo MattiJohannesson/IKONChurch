@@ -136,4 +136,46 @@ public class MediaTab extends Activity {
         }
     }
 
+    public void Change(View view){
+        Intent i = null;
+        switch (view.getId()){
+            case R.id.ImageButtonProfile:
+                if (Profile_Login.Logdedin){
+                    i = new Intent( MediaTab.this, ProfileTab.class);
+                    startActivity(i);
+                }
+
+                else {
+                    i= new Intent(MediaTab.this, Profile_Login.class);
+                    startActivity(i);
+                }
+                break;
+
+            case R.id.imageButtnconnect:
+                i = new Intent( MediaTab.this, Connect.class );
+                startActivity( i );
+                break;
+
+            case R.id.imageButtnhome:
+                i = new Intent( MediaTab.this, Home.class );
+                startActivity( i );
+                break;
+
+            case R.id.imageButtnGiving:
+                i = new Intent( MediaTab.this, Giving.class );
+                startActivity( i );
+                break;
+
+            case R.id.imageButtnProfile:
+                i = new Intent( MediaTab.this, ProfileTab.class );
+                startActivity( i );
+                break;
+
+            case R.id.ImageBttnMedia:
+                i = new Intent(MediaTab.this, MediaTab.class);
+                startActivity(i);
+                break;
+        }
+    }
+
 }

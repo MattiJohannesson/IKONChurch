@@ -1,6 +1,7 @@
 package com.churchapp.ikon.ikonchurch;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.icu.util.TimeUnit;
@@ -9,6 +10,7 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -118,5 +120,47 @@ public class ProfileTab extends Activity {
         bttns.add( 2,Bttn3 = (RadioButton)findViewById( R.id.radioButtonMovImage3 ) );
         bttns.add( 3,Bttn4 = (RadioButton)findViewById( R.id.radioButtonMovImage4 ) );
         bttns.add( 4,Bttn5 = (RadioButton)findViewById( R.id.radioButtonMovImage5 ) );
+    }
+
+    public void Change(View view){
+        Intent i = null;
+        switch (view.getId()){
+            case R.id.ImageButtonProfile:
+                if (Profile_Login.Logdedin){
+                    i = new Intent( ProfileTab.this, ProfileTab.class);
+                    startActivity(i);
+                }
+
+                else {
+                    i= new Intent(ProfileTab.this, Profile_Login.class);
+                    startActivity(i);
+                }
+                break;
+
+            case R.id.imageButtnconnect:
+                i = new Intent( ProfileTab.this, Connect.class );
+                startActivity( i );
+                break;
+
+            case R.id.imageButtnhome:
+                i = new Intent( ProfileTab.this, Home.class );
+                startActivity( i );
+                break;
+
+            case R.id.imageButtnGiving:
+                i = new Intent( ProfileTab.this, Giving.class );
+                startActivity( i );
+                break;
+
+            case R.id.imageButtnProfile:
+                i = new Intent( ProfileTab.this, ProfileTab.class );
+                startActivity( i );
+                break;
+
+            case R.id.ImageBttnMedia:
+                i = new Intent(ProfileTab.this, MediaTab.class);
+                startActivity(i);
+                break;
+        }
     }
 }
