@@ -26,7 +26,7 @@ public class AWSConfiguration {
     public static final Regions AMAZON_COGNITO_REGION =
       Regions.fromName("us-east-1");
     public static final String  AMAZON_COGNITO_IDENTITY_POOL_ID =
-        "us-east-1:23d86f86-3e26-4520-b0f9-6f6a91d26898";
+        "us-east-1:e717b72c-1df0-4190-a789-e0ce9881320e";
     // AMAZON MOBILE ANALYTICS
     public static final String  AMAZON_MOBILE_ANALYTICS_APP_ID =
         "64e899b09e2d4575ada6d9127b9dc052";

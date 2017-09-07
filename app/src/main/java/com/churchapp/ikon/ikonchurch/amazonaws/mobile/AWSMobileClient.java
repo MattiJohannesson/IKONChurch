@@ -23,7 +23,7 @@ import com.churchapp.ikon.ikonchurch.amazonaws.mobile.content.UserFileManager;
 import com.churchapp.ikon.ikonchurch.amazonaws.mobile.content.ContentManager;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.mobileconnectors.dynamodbv2.dynamodbmapper.DynamoDBMapper;
-import com.churchapp.ikon.ikonchurch.amazonaws.mobilehelper.auth.signin.CognitoUserPoolsSignInProvider;
+//import com.churchapp.ikon.ikonchurch.amazonaws.mobilehelper.auth.signin.CognitoUserPoolsSignInProvider;
 
 /**
  * The AWS Mobile Client bootstraps the application to make calls to AWS 
@@ -186,10 +186,10 @@ public class AWSMobileClient {
     }
 
 
-    private static void addSignInProviders(final Context context, final IdentityManager identityManager) {
-        // Add Cognito User Pools as an Identity Provider.
-        identityManager.addIdentityProvider(CognitoUserPoolsSignInProvider.class);
-    }
+//    private static void addSignInProviders(final Context context, final IdentityManager identityManager) {
+//        // Add Cognito User Pools as an Identity Provider.
+//        identityManager.addIdentityProvider(CognitoUserPoolsSignInProvider.class);
+//    }
 
     /**
      * Creates and initialize the default AWSMobileClient if it doesn't already
@@ -205,7 +205,7 @@ public class AWSMobileClient {
             final IdentityManager identityManager = new IdentityManager(context, clientConfiguration,
                 AWSConfiguration.getAWSMobileHelperConfiguration());
 
-            addSignInProviders(context, identityManager);
+//            addSignInProviders(context, identityManager);
 
             final AWSMobileClient awsClient =
                 new AWSMobileClient.Builder(context)
