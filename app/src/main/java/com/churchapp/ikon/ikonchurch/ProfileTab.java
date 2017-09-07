@@ -152,11 +152,6 @@ public class ProfileTab extends Activity {
                 startActivity( i );
                 break;
 
-            case R.id.imageButtnProfile:
-                i = new Intent( ProfileTab.this, ProfileTab.class );
-                startActivity( i );
-                break;
-
             case R.id.ImageBttnMedia:
                 i = new Intent(ProfileTab.this, MediaTab.class);
                 startActivity(i);

@@ -16,7 +16,7 @@ public class Connect extends AppCompatActivity {
     public void Change(View view){
         Intent i = null;
         switch (view.getId()){
-            case R.id.ImageButtonProfile:
+            case R.id.imageButtnProfile:
                 if (Profile_Login.Logdedin){
                     i = new Intent( Connect.this, ProfileTab.class);
                     startActivity(i);
@@ -40,11 +40,6 @@ public class Connect extends AppCompatActivity {
 
             case R.id.imageButtnhome:
                 i = new Intent( Connect.this, Home.class );
-                startActivity( i );
-                break;
-
-            case R.id.imageButtnProfile:
-                i = new Intent( Connect.this, ProfileTab.class );
                 startActivity( i );
                 break;
 

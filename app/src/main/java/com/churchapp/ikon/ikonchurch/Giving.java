@@ -43,11 +43,6 @@ public class Giving extends AppCompatActivity {
                 startActivity( i );
                 break;
 
-            case R.id.imageButtnProfile:
-                i = new Intent( Giving.this, ProfileTab.class );
-                startActivity( i );
-                break;
-
             case R.id.ImageBttnMedia:
                 i = new Intent(Giving.this, MediaTab.class);
                 startActivity(i);

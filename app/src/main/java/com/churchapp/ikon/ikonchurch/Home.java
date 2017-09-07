@@ -21,7 +21,7 @@ public class Home extends Activity {
     public void Change(View view){
         Intent i = null;
         switch (view.getId()){
-            case R.id.ImageButtonProfile:
+            case R.id.ImageBttnProfile:
                 if (Profile_Login.Logdedin){
                     i = new Intent( Home.this, ProfileTab.class);
                     startActivity(i);
@@ -45,11 +45,6 @@ public class Home extends Activity {
 
             case R.id.imageButtnhome:
                 i = new Intent( Home.this, Home.class );
-                startActivity( i );
-                break;
-
-            case R.id.imageButtnProfile:
-                i = new Intent( Home.this, ProfileTab.class );
                 startActivity( i );
                 break;
 
